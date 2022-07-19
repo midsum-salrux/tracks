@@ -1,0 +1,10 @@
+:~
+  title+'Tracks'
+  info+'Dashboard'
+  color+0x44.5566
+  version+[0 0 1]
+  website+'https://github.com/midsum-salrux/tracks'
+  license+'MIT'
+  base+'tracks'
+  glob-ames+[~tindys-botter-dozzod-tomdys 0v0]
+==
