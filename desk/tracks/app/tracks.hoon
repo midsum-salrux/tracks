@@ -30,7 +30,8 @@
     def   ~(. (default-agent this %.n) bowl)
 ++  on-init
   ^-  (quip card _this)
-  `this(tracks *(list track))
+  :_  this(tracks default-tracks)
+      (turn default-tracks run-track-card)
 ++  on-save
   ^-  vase
   !>(state)

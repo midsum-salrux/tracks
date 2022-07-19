@@ -30,4 +30,8 @@
         (into results.old-track 0 cargo.delivery)
     ==
   (zing ~[(scag index tracks) ~[new-track] (slag +(index) tracks)])
+++  default-tracks
+  ^-  (list track)
+  :~  [%tracks %hello-world ~h1 "Hello World" ~]
+  ==
 --
