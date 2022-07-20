@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Tracks from "./Tracks";
 import Urbit from "@urbit/http-api";
 
 export default function App() {
@@ -9,12 +10,30 @@ export default function App() {
     setTracks(result);
   }
 
+  function changeTracksPoke(newTracks) {
+    window.urbit.poke({
+      app: "tracks",
+      mark: "tracks-change-tracks",
+      json: newTracks,
+      onSuccess: tracksScry
+    });
+  }
+
+  function addTrackPoke(newTrack) {
+    window.urbit.poke({
+      app: "tracks",
+      mark: "tracks-add-track",
+      json: newTrack,
+      onSuccess: tracksScry
+    });
+  }
+
   window.urbit = new Urbit("");
   window.urbit.ship = window.ship;
 
   useEffect(tracksScry, []);
 
   return <>
-    <code>{JSON.stringify(tracks)}</code>
+    <Tracks tracks={tracks} changeTracksPoke={changeTracksPoke} />
   </>;
 }
