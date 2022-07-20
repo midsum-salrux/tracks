@@ -61,6 +61,7 @@
   ?+  wire  (on-arvo:def wire sign-arvo)
       [%run-track *]
     ?+  sign-arvo  (on-arvo:def wire sign-arvo)
+      ::  TODO run the timer on failure
         [%khan %arow %.y %noun *]
       =/  [%khan %arow %.y %noun result=vase]  sign-arvo
       =/  [desk=@tas ted=@tas =cargo]  !<(delivery result)
