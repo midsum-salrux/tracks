@@ -61,19 +61,21 @@
   ?+  wire  (on-arvo:def wire sign-arvo)
       [%run-track *]
     ?+  sign-arvo  (on-arvo:def wire sign-arvo)
-      ::  TODO run the timer on failure
+        [%khan %arow %.n %thread-fail *]
+      `this
         [%khan %arow %.y %noun *]
       =/  [%khan %arow %.y %noun result=vase]  sign-arvo
       =/  [desk=@tas ted=@tas =cargo]  !<(delivery result)
       =/  track  (need (find-track desk ted tracks))
-      :_  this(tracks (add-cargo-to-track tracks [desk ted cargo]))
-          ~[(timer-card desk ted frequency.track now.bowl)]
+      `this(tracks (add-cargo-to-track tracks [desk ted cargo]))
     ==
       [%timer @tas @tas *]
     =/  [%timer desk=@tas ted=@tas *]  wire
-    =/  maybe-track  (find-track desk ted tracks)
+    =/  track  (need (find-track desk ted tracks))
     :_  this
-        ~[(run-track-card (need maybe-track))]
+    :~  (run-track-card track)
+        (timer-card desk ted frequency.track now.bowl)
+    ==
   ==
 ++  on-fail   on-fail:def
 --
