@@ -15,19 +15,19 @@ function dataFromCargo(cargo) {
 }
 
 function cardForTrack(track) {
-  return <div className="card mb-4 box-shadow">
-    <h5 className="card-title">{track.name}</h5>
-    <h6 className="card-subtitle mb-2 text-muted">%{track.desk} - /ted/{track.ted} ({track.frequency})</h6>
-    <h1>{dataFromCargo(track.results[0])}</h1>
+  return <div className="col-md-4">
+    <div className="card mb-4 box-shadow text-center">
+      <h5 className="card-title mb-2">{track.name}</h5>
+      <h4 className="mb-3">{dataFromCargo(track.results[0])}</h4>
+      <h6 className="card-subtitle mb-2 text-muted">%{track.desk} - /ted/{track.ted} ({track.frequency})</h6>
+    </div>
   </div>;
 }
 
 export default function Tracks(props) {
   return <div className="container">
     <div className="row">
-      <div className="col-md-4">
-        {props.tracks.map(cardForTrack)}
-      </div>
+      {props.tracks.map(cardForTrack)}
     </div>
   </div>;
 }

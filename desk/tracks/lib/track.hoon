@@ -35,7 +35,9 @@
   (zing ~[(scag index tracks) ~[new-track] (slag +(index) tracks)])
 ++  default-tracks
   ^-  (list track)
-  :~  [%tracks %hello-world ~h1 "Hello World" ~]
+  :~  [%tracks %star-price ~d1 "Star Price (ETH)" ~]
+      [%tracks %random-quote ~h1 "Quote (Ben or Bruce)" ~]
+      [%tracks %weather ~h1 "Current Temperature" ~]
   ==
 ::  json (enjs)
 ++  enjs-tracks
@@ -64,7 +66,6 @@
   (turn results enjs-cargo)
 ++  enjs-cargo
   |=  =cargo
-  ::  TODO
   ^-  json
   ?-  cargo
       [%ud @ud @da]

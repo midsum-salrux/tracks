@@ -9,6 +9,9 @@
   $%  state-0
   ==
 +$  state-0  [%0 tracks=(list track)]
++$  update-poke
+  $%  [%reinit]
+  ==
 ::  cards
 ++  run-track-card
   |=  =track
@@ -31,7 +34,10 @@
 ++  on-init
   ^-  (quip card _this)
   :_  this(tracks default-tracks)
-      (turn default-tracks run-track-card)
+      %+  turn  default-tracks
+      |=  =track
+      =/  index  (need (find ~[track] default-tracks))
+      (timer-card desk.track ted.track (mul ~s1 index) now.bowl)
 ++  on-save
   ^-  vase
   !>(state)
@@ -53,6 +59,13 @@
       %tracks-change-tracks
     =/  new-tracks  !<((list track) vase)
     `this(tracks new-tracks)
+      %noun
+    =/  =update-poke  !<(update-poke vase)
+      ?-  update-poke
+          [%reinit]
+        ::  TODO clear timers
+        on-init
+      ==
   ==
 ++  on-watch  on-watch:def
 ++  on-leave  on-leave:def
