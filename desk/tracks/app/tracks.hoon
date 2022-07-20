@@ -50,6 +50,9 @@
     =/  new-track  !<(track vase)
     :_  this(tracks (into tracks 0 new-track))
         ~[(run-track-card new-track)]
+      %tracks-change-tracks
+    =/  new-tracks  !<((list track) vase)
+    `this(tracks new-tracks)
   ==
 ++  on-watch  on-watch:def
 ++  on-leave  on-leave:def

@@ -97,6 +97,37 @@
   ^-  cord
   (crip (r-co:co (rlyd n)))
 ::  json (dejs)
+++  dejs-tracks
+  |=  =json
+  ^-  (list track)
+  %.  json
+  (ar dejs-track)
+++  dejs-track
+  |=  =json
+  ^-  track
+  %.  json
+  %-  ot
+  :~  desk+so
+      ted+so
+      frequency+dejs-frequency
+      name+sa
+      results+dejs-results
+  ==
+++  dejs-results
+  |=  =json
+  ^-  (list cargo)
+  %.  json
+  (ar dejs-cargo)
+++  dejs-cargo
+  |=  =json
+  ^-  cargo
+  %.  json
+  %-  of
+  :~  [%ud (ot ~[data+ni time+du])]
+      [%rd (ot ~[data+ne time+du])]
+      [%bool (ot ~[data+bo time+du])]
+      [%tape (ot ~[data+sa time+du])]
+  ==
 ++  dejs-frequency
   |=  =json
   ^-  @dr
