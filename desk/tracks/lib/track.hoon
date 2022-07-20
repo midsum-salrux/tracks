@@ -5,7 +5,7 @@
   [desk=@tas ted=@tas frequency=@dr name=tape results=(list cargo)]
 +$  cargo
   $%  [%ud data=@ud time=@da]
-      [%rs data=@rs time=@da]
+      [%rd data=@rd time=@da]
       [%bool data=? time=@da]
       [%tape data=tape time=@da]
   ==
@@ -66,7 +66,36 @@
   |=  =cargo
   ::  TODO
   ^-  json
-  [%s 'foo']
+  ?-  cargo
+      [%ud @ud @da]
+    %+  frond:enjs:format  'ud'
+    %-  pairs:enjs:format
+    :~  ['data' (numb:enjs:format data.cargo)]
+        ['time' (time:enjs:format time.cargo)]
+    ==
+      [%rd @rd @da]
+    %+  frond:enjs:format  'rd'
+    %-  pairs:enjs:format
+    :~  ['data' n+(rd-to-cord data.cargo)]
+        ['time' (time:enjs:format time.cargo)]
+    ==
+      [%bool ? @da]
+    %+  frond:enjs:format  'bool'
+    %-  pairs:enjs:format
+    :~  ['data' b+data.cargo]
+        ['time' (time:enjs:format time.cargo)]
+    ==
+      [%tape * @da]
+    %+  frond:enjs:format  'tape'
+    %-  pairs:enjs:format
+    :~  ['data' s+(crip data.cargo)]
+        ['time' (time:enjs:format time.cargo)]
+    ==
+  ==
+++  rd-to-cord
+  |=  [n=@rd]
+  ^-  cord
+  (crip (r-co:co (rlyd n)))
 ::  json (dejs)
 ++  dejs-frequency
   |=  =json

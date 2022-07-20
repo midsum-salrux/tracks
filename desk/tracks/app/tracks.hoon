@@ -53,7 +53,12 @@
   ==
 ++  on-watch  on-watch:def
 ++  on-leave  on-leave:def
-++  on-peek   on-peek:def
+++  on-peek
+  |=  [=path]
+  ^-  (unit (unit cage))
+  ?>  ?=([%x %tracks ~] path)
+  :^  ~  ~  %json
+  !>  (enjs-tracks tracks)
 ++  on-agent  on-agent:def
 ++  on-arvo
   |=  [=wire =sign-arvo]
