@@ -5,11 +5,10 @@
 +$  card  card:agent:gall
 +$  sign  sign:agent:gall
 ::  state
-::  TODO save the timers in the state
 +$  versioned-state
   $%  state-0
   ==
-+$  state-0  [%0 tracks=(list track)]
++$  state-0  [%0 tracks=(list track) timers=(list taft-timer)]
 +$  update-poke
   $%  [%reinit]
   ==
@@ -22,9 +21,9 @@
       !>([taft.track params.track])
   ==
 ++  timer-card
-  |=  [=taft delay=@dr now=@da]
+  |=  [=taft-timer]
   ^-  card
-  [%pass :-(%timer taft) %arvo %b [%wait (add delay now)]]
+  [%pass :-(%timer taft.taft-timer) %arvo %b [%wait time.taft-timer]]
 --
 %-  agent:dbug
 =|  state-0
@@ -35,11 +34,9 @@
     def   ~(. (default-agent this %.n) bowl)
 ++  on-init
   ^-  (quip card _this)
-  :_  this(tracks default-tracks)
-      %+  turn  default-tracks
-      |=  =track
-      =/  index  (need (find ~[track] default-tracks))
-      (timer-card taft.track (mul ~s1 index) now.bowl)
+  =/  default-timers  (timers-for-tracks default-tracks now.bowl)
+  :-  (turn default-timers timer-card)
+  this(tracks default-tracks, timers default-timers)
 ++  on-save
   ^-  vase
   !>(state)
@@ -95,9 +92,10 @@
       [%timer @tas @tas @tas ~]
     =/  [%timer =taft]  wire
     =/  track  (need (find-track taft tracks))
-    :_  this
+    =/  new-timer  [taft (add frequency.track now.bowl)]
+    :_  this(timers (update-timer timers new-timer))
     :~  (run-track-card track)
-        (timer-card taft frequency.track now.bowl)
+        (timer-card new-timer)
     ==
   ==
 ++  on-fail   on-fail:def

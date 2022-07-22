@@ -14,6 +14,7 @@
   ==
 +$  cart  [=taft params=(list param)]
 +$  delivery  [=taft =cargo]
++$  taft-timer  [=taft time=@da]
 ::  utility
 ++  find-track
   |=  [=taft tracks=(list track)]
@@ -54,6 +55,18 @@
     =(key key.param)
   ?~  matches  !!
   value.i.matches
+++  timers-for-tracks
+  |=  [tracks=(list track) now=@da]
+  ^-  (list taft-timer)
+  %+  turn  tracks
+    |=  =track
+    =/  index  (need (find ~[track] tracks))
+    =/  time  (add (mul ~s1 index) now)
+    [taft.track time]
+++  update-timer
+  |=  [timers=(list taft-timer) taft-timer]
+  ::  TODO
+  timers
 ::  json (enjs)
 ++  enjs-tracks
   |=  tracks=(list track)
