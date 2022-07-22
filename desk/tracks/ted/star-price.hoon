@@ -22,6 +22,6 @@
   ;<  =json  bind:m  (fetch-json url)
   =/  result  (mine-json json)
   =/  =delivery
-    [%tracks %star-price [%rd result now]]
+    [[%tracks %star-price] [%rd result now]]
   (pure:m !>(delivery))
 --

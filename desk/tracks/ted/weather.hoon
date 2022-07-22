@@ -31,13 +31,13 @@
   |=  arg=vase
   =/  m  (strand ,vase)
   ^-  form:m
-  ::  change these to wherever you want
-  =/  latitude  "40.71"
-  =/  longitude  "-74.01"
+  =/  params  !<((list param) arg)
+  =/  latitude  (find-param params %latitude)
+  =/  longitude  (find-param params %longitude)
   ;<  now=@da  bind:m  get-time
   ;<  =json  bind:m  (fetch-json (url latitude longitude))
   =/  result  (mine-json json)
   =/  =delivery
-    [%tracks %weather [%rd result now]]
+    [[%tracks %weather] [%rd result now]]
   (pure:m !>(delivery))
 --

@@ -34,6 +34,6 @@
   ;<  =json  bind:m  (fetch-json (url eny))
   =/  result  (mine-json json)
   =/  =delivery
-    [%tracks %random-quote [%tape result now]]
+    [[%tracks %random-quote] [%tape result now]]
   (pure:m !>(delivery))
 --

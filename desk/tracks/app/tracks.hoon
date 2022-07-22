@@ -5,6 +5,7 @@
 +$  card  card:agent:gall
 +$  sign  sign:agent:gall
 ::  state
+::  TODO save the timers in the state
 +$  versioned-state
   $%  state-0
   ==
@@ -17,12 +18,12 @@
   |=  =track
   ^-  card
   :*  %pass  /run-track  %arvo  %k  %fard
-      desk.track  ted.track  %noun  !>(~)
+      desk.taft.track  ted.taft.track  %noun  !>(params.track)
   ==
 ++  timer-card
-  |=  [desk=@tas ted=@tas delay=@dr now=@da]
+  |=  [=taft delay=@dr now=@da]
   ^-  card
-  [%pass `path`~[%timer desk ted] %arvo %b [%wait (add delay now)]]
+  [%pass ~[%timer desk.taft ted.taft] %arvo %b [%wait (add delay now)]]
 --
 %-  agent:dbug
 =|  state-0
@@ -37,7 +38,7 @@
       %+  turn  default-tracks
       |=  =track
       =/  index  (need (find ~[track] default-tracks))
-      (timer-card desk.track ted.track (mul ~s1 index) now.bowl)
+      (timer-card taft.track (mul ~s1 index) now.bowl)
 ++  on-save
   ^-  vase
   !>(state)
@@ -86,16 +87,16 @@
       `this
         [%khan %arow %.y %noun *]
       =/  [%khan %arow %.y %noun result=vase]  sign-arvo
-      =/  [desk=@tas ted=@tas =cargo]  !<(delivery result)
-      =/  track  (need (find-track desk ted tracks))
-      `this(tracks (add-cargo-to-track tracks [desk ted cargo]))
+      =/  [=taft =cargo]  !<(delivery result)
+      =/  track  (need (find-track taft tracks))
+      `this(tracks (add-cargo-to-track tracks [taft cargo]))
     ==
       [%timer @tas @tas *]
     =/  [%timer desk=@tas ted=@tas *]  wire
-    =/  track  (need (find-track desk ted tracks))
+    =/  track  (need (find-track [desk ted] tracks))
     :_  this
     :~  (run-track-card track)
-        (timer-card desk ted frequency.track now.bowl)
+        (timer-card [desk ted] frequency.track now.bowl)
     ==
   ==
 ++  on-fail   on-fail:def
