@@ -4,6 +4,7 @@
 =,  strand=strand:spider
 =,  dejs:format
 =,  strand-fail=strand-fail:libstrand:spider
+=/  m  (strand ,vase)
 |^  ted
 ++  decoder
   %-  ot
@@ -29,15 +30,14 @@
 ++  ted
   ^-  thread:spider
   |=  arg=vase
-  =/  m  (strand ,vase)
   ^-  form:m
-  =/  params  !<((list param) arg)
-  =/  latitude  (find-param params %latitude)
-  =/  longitude  (find-param params %longitude)
+  =/  =cart  !<(cart arg)
+  =/  latitude  (find-param params.cart %latitude)
+  =/  longitude  (find-param params.cart %longitude)
   ;<  now=@da  bind:m  get-time
   ;<  =json  bind:m  (fetch-json (url latitude longitude))
   =/  result  (mine-json json)
   =/  =delivery
-    [[%tracks %weather] [%rd result now]]
+    [taft.cart [%rd result now]]
   (pure:m !>(delivery))
 --

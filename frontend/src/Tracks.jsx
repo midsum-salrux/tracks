@@ -19,7 +19,7 @@ function cardForTrack(track) {
     <div className="card mb-4 box-shadow text-center">
       <h5 className="card-title mb-2">{track.name}</h5>
       <h4 className="mb-3">{dataFromCargo(track.results[0])}</h4>
-      <h6 className="card-subtitle mb-2 text-muted">%{track.taft.desk} - /ted/{track.taft.ted} ({track.frequency})</h6>
+      <h6 className="card-subtitle mb-2 text-muted">%{track.taft.join("/")} ({track.frequency})</h6>
     </div>
   </div>;
 }

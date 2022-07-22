@@ -4,6 +4,7 @@
 =,  strand=strand:spider
 =,  dejs:format
 =,  strand-fail=strand-fail:libstrand:spider
+=/  m  (strand ,vase)
 |^  ted
 ++  decoder
   %-  ot
@@ -27,13 +28,13 @@
 ++  ted
   ^-  thread:spider
   |=  arg=vase
-  =/  m  (strand ,vase)
   ^-  form:m
+  =/  =cart  !<(cart arg)
   ;<  now=@da  bind:m  get-time
   ;<  eny=@uvJ  bind:m  get-entropy
   ;<  =json  bind:m  (fetch-json (url eny))
   =/  result  (mine-json json)
   =/  =delivery
-    [[%tracks %random-quote] [%tape result now]]
+    [taft.cart [%tape result now]]
   (pure:m !>(delivery))
 --

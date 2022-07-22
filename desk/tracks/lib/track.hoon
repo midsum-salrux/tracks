@@ -1,7 +1,7 @@
 =,  dejs:format
 |%
 ::  types
-+$  taft  [desk=@tas ted=@tas]
++$  taft  [desk=@tas ted=@tas slug=@tas ~]
 +$  param  [key=@tas value=tape]
 ::  params are not a map because they have a user-definable order
 +$  track
@@ -12,6 +12,7 @@
       [%bool data=? time=@da]
       [%tape data=tape time=@da]
   ==
++$  cart  [=taft params=(list param)]
 +$  delivery  [=taft =cargo]
 ::  utility
 ++  find-track
@@ -38,9 +39,9 @@
   (zing ~[(scag index tracks) ~[new-track] (slag +(index) tracks)])
 ++  default-tracks
   ^-  (list track)
-  :~  [[%tracks %star-price] ~d1 "Star Price (ETH)" ~ ~]
-      [[%tracks %random-quote] ~h1 "Quote (Ben or Bruce)" ~ ~]
-      :*  [%tracks %weather]  ~h1  "Current Temperature"
+  :~  [/tracks/star-price/star ~d1 "Star Price (ETH)" ~ ~]
+      [/tracks/random-quote/b-or-b ~h1 "Quote (Ben or Bruce)" ~ ~]
+      :*  /tracks/weather/nyc  ~h1  "Current Temperature"
           ~[[%latitude "40.71"] [%longitude "-74.01"]]  ~
       ==
   ==
@@ -72,20 +73,21 @@
 ++  enjs-taft
   |=  =taft
   ^-  json
-  %-  pairs:enjs:format
-  :~  ['desk' s+`@t`desk.taft]
-      ['ted' s+`@t`ted.taft]
+  :-  %a
+  :~  s+desk.taft
+      s+ted.taft
+      s+slug.taft
   ==
 ++  enjs-params
   |=  params=(list param)
   ^-  json
   :-  %a
   %+  turn  params
-  |=  =param
-  %-  pairs:enjs:format
-  :~  ['key' s+key.param]
-      ['value' s+(crip value.param)]
-  ==
+    |=  =param
+    %-  pairs:enjs:format
+    :~  ['key' s+key.param]
+        ['value' s+(crip value.param)]
+    ==
 ++  enjs-frequency
   |=  frequency=@dr
   ^-  json
@@ -146,10 +148,11 @@
       results+dejs-results
   ==
 ++  dejs-taft
-  %-  ot
-  :~  desk+so
-      ted+so
-  ==
+  %+  cu
+    |=  [desk=@tas ted=@tas slug=@tas]
+    ^-  taft
+    [desk ted slug ~]
+  (at ~[so so so])
 ++  dejs-params
   %-  ar
   %-  ot

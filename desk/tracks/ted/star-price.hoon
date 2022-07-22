@@ -4,6 +4,7 @@
 =,  strand=strand:spider
 =,  dejs:format
 =,  strand-fail=strand-fail:libstrand:spider
+=/  m  (strand ,vase)
 |^  ted
 ++  mine-json
   %-  ot
@@ -16,12 +17,12 @@
 ++  ted
   ^-  thread:spider
   |=  arg=vase
-  =/  m  (strand ,vase)
   ^-  form:m
+  =/  =cart  !<(cart arg)
   ;<  now=@da  bind:m  get-time
   ;<  =json  bind:m  (fetch-json url)
   =/  result  (mine-json json)
   =/  =delivery
-    [[%tracks %star-price] [%rd result now]]
+    [taft.cart [%rd result now]]
   (pure:m !>(delivery))
 --

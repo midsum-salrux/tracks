@@ -18,12 +18,13 @@
   |=  =track
   ^-  card
   :*  %pass  /run-track  %arvo  %k  %fard
-      desk.taft.track  ted.taft.track  %noun  !>(params.track)
+      desk.taft.track  ted.taft.track  %noun
+      !>([taft.track params.track])
   ==
 ++  timer-card
   |=  [=taft delay=@dr now=@da]
   ^-  card
-  [%pass ~[%timer desk.taft ted.taft] %arvo %b [%wait (add delay now)]]
+  [%pass :-(%timer taft) %arvo %b [%wait (add delay now)]]
 --
 %-  agent:dbug
 =|  state-0
@@ -91,12 +92,12 @@
       =/  track  (need (find-track taft tracks))
       `this(tracks (add-cargo-to-track tracks [taft cargo]))
     ==
-      [%timer @tas @tas *]
-    =/  [%timer desk=@tas ted=@tas *]  wire
-    =/  track  (need (find-track [desk ted] tracks))
+      [%timer @tas @tas @tas ~]
+    =/  [%timer =taft]  wire
+    =/  track  (need (find-track taft tracks))
     :_  this
     :~  (run-track-card track)
-        (timer-card [desk ted] frequency.track now.bowl)
+        (timer-card taft frequency.track now.bowl)
     ==
   ==
 ++  on-fail   on-fail:def
