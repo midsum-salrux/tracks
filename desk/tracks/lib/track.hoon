@@ -63,11 +63,6 @@
           ~[[%latitude "25.76"] [%longitude "-80.19"]]
           ~
       ==
-      :*  /tracks/random-quote/b-or-b  ~h1
-          "Quote (Ben or Bruce)"
-          ~
-          ~
-      ==
   ==
 ++  find-param
   |=  [params=(list param) key=@tas]
