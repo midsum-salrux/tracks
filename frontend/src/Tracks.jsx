@@ -16,10 +16,19 @@ function dataFromCargo(cargo) {
 
 function cardForTrack(track) {
   return <div className="col-md-4">
-    <div className="card mb-4 box-shadow text-center">
-      <h5 className="card-title mb-2">{track.name}</h5>
-      <h4 className="mb-3">{dataFromCargo(track.results[0])}</h4>
-      <h6 className="card-subtitle mb-2 text-muted">%{track.taft.join("/")} ({track.frequency})</h6>
+    <div className="card mb-4 box-shadow">
+      <h5 className="card-title mb-0 text-center text-muted">{track.name}</h5>
+      <div className="card-body">
+        <h3 className="text-center mb-1">{dataFromCargo(track.results[0])}</h3>
+      </div>
+      <div className="row">
+        <div className="col-lg-auto text-left">
+          <h6 className="card-subtitle text-muted">/{track.taft.join("/")}</h6>
+        </div>
+        <div className="col-sm text-right">
+          <h6 className="card-subtitle text-muted">edit</h6>
+        </div>
+      </div>
     </div>
   </div>;
 }

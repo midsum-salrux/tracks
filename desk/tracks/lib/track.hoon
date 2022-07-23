@@ -1,9 +1,10 @@
 =,  dejs:format
 |%
 ::  types
+::  you can write this as /desk/ted/slug
 +$  taft  [desk=@tas ted=@tas slug=@tas ~]
-+$  param  [key=@tas value=tape]
 ::  params are not a map because they have a user-definable order
++$  param  [key=@tas value=tape]
 +$  track
   [=taft frequency=@dr name=tape params=(list param) results=(list cargo)]
 +$  cargo
@@ -12,7 +13,9 @@
       [%bool data=? time=@da]
       [%tape data=tape time=@da]
   ==
+::  a cart is the argument passed to your thread
 +$  cart  [=taft params=(list param)]
+::  your thread should return a delivery
 +$  delivery  [=taft =cargo]
 +$  taft-timer  [=taft time=@da]
 ::  utility
@@ -40,10 +43,30 @@
   (zing ~[(scag index tracks) ~[new-track] (slag +(index) tracks)])
 ++  default-tracks
   ^-  (list track)
-  :~  [/tracks/star-price/star ~d1 "Star Price (ETH)" ~ ~]
-      [/tracks/random-quote/b-or-b ~h1 "Quote (Ben or Bruce)" ~ ~]
-      :*  /tracks/weather/nyc  ~h1  "Current Temperature"
-          ~[[%latitude "40.71"] [%longitude "-74.01"]]  ~
+  :~  :*  /tracks/nft-floor/star  ~d1
+          "Star Price Floor (ETH)"
+          ~[[%name "urbit-id-star"]]
+          ~
+      ==
+      :*  /tracks/nft-floor/milady  ~d1
+          "Milady Price Floor (ETH)"
+          ~[[%name "milady"]]
+          ~
+      ==
+      :*  /tracks/weather/nyc  ~h1
+          "Current Temperature (NYC)"
+          ~[[%latitude "40.71"] [%longitude "-74.01"]]
+          ~
+      ==
+      :*  /tracks/weather/miami  ~h1
+          "Current Temperature (Miami)"
+          ~[[%latitude "25.76"] [%longitude "-80.19"]]
+          ~
+      ==
+      :*  /tracks/random-quote/b-or-b  ~h1
+          "Quote (Ben or Bruce)"
+          ~
+          ~
       ==
   ==
 ++  find-param
@@ -64,9 +87,15 @@
     =/  time  (add (mul ~s1 index) now)
     [taft.track time]
 ++  update-timer
-  |=  [timers=(list taft-timer) taft-timer]
-  ::  TODO
-  timers
+  |=  [timers=(list taft-timer) new-timer=taft-timer]
+  =/  matching
+    %+  skim  timers
+    |=  =taft-timer
+    =(taft.taft-timer taft.new-timer)
+  ?~  matching  timers
+  =/  old-timer  i.matching
+  =/  index  (need (find ~[old-timer] timers))
+  (zing ~[(scag index timers) ~[new-timer] (slag +(index) timers)])
 ::  json (enjs)
 ++  enjs-tracks
   |=  tracks=(list track)
