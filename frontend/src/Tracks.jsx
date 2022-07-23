@@ -1,6 +1,12 @@
 import React from "react";
 
-function dataFromCargo(cargo) {
+function dataFromCargo(results) {
+  if (results.length == 0) {
+    return "~";
+  }
+
+  let cargo = results[0];
+
   if ("ud" in cargo) {
     return cargo.ud.data
   } else if ("rd" in cargo) {
@@ -47,7 +53,7 @@ function cardForTrack(track) {
       <div className="card mb-4 box-shadow">
         <h5 className="card-title mb-0 text-center text-muted">{track.name}</h5>
         <div className="card-body">
-          <h3 className="text-center mb-1">{dataFromCargo(track.results[0])}</h3>
+          <h3 className="text-center mb-1">{dataFromCargo(track.results)}</h3>
         </div>
         <div className="row">
           <div className="col-lg-auto text-left">
@@ -59,7 +65,7 @@ function cardForTrack(track) {
         </div>
       </div>
     </div>
-  </>
+  </>;
 }
 
 export default function Tracks(props) {

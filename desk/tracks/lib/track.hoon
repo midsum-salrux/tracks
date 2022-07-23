@@ -43,13 +43,23 @@
   (zing ~[(scag index tracks) ~[new-track] (slag +(index) tracks)])
 ++  default-tracks
   ^-  (list track)
-  :~  :*  /tracks/nft-floor/star  ~d1
-          "Star Price Floor (ETH)"
+  :~  :*  /tracks/crypto-price/bitcoin  ~h1
+          "Bitcoin Price (USD)"
+          ~[[%token "bitcoin"]]
+          ~
+      ==
+      :*  /tracks/crypto-price/ethereum  ~h1
+          "Ethereum Price (USD)"
+          ~[[%token "ethereum"]]
+          ~
+      ==
+      :*  /tracks/nft-floor/star  ~d1
+          "Star Floor Price (ETH)"
           ~[[%name "urbit-id-star"]]
           ~
       ==
       :*  /tracks/nft-floor/milady  ~d1
-          "Milady Price Floor (ETH)"
+          "Milady Floor Price (ETH)"
           ~[[%name "milady"]]
           ~
       ==
@@ -76,6 +86,8 @@
 ++  timers-for-tracks
   |=  [tracks=(list track) now=@da]
   ^-  (list taft-timer)
+  ::  these are staggered in part because of a khan bug
+  ::  where simultaneously-started threads don't return results
   %+  turn  tracks
     |=  =track
     =/  index  (need (find ~[track] tracks))
