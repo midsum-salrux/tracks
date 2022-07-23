@@ -1,4 +1,13 @@
-::  TODO comments, have floor for more than one nft
+::
+::  NFT FLOOR
+::  Returns the floor price in ETH of a given NFT collection
+::
+::  PARAMETERS
+::  %name: the opensea slug of the collection
+::
+::  DATA SOURCE
+::  https://opensea.io/
+::
 /-  spider
 /+  *strandio
 /+  *track

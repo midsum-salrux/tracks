@@ -54,12 +54,12 @@
           ~
       ==
       :*  /tracks/weather/nyc  ~h1
-          "Current Temperature (NYC)"
+          "Current Weather (NYC)"
           ~[[%latitude "40.71"] [%longitude "-74.01"]]
           ~
       ==
       :*  /tracks/weather/miami  ~h1
-          "Current Temperature (Miami)"
+          "Current Weather (Miami)"
           ~[[%latitude "25.76"] [%longitude "-80.19"]]
           ~
       ==
@@ -163,10 +163,15 @@
         ['time' (time:enjs:format time.cargo)]
     ==
   ==
+::  text formatting
 ++  rd-to-cord
   |=  [n=@rd]
   ^-  cord
   (crip (r-co:co (rlyd n)))
+++  ud-to-cord
+  |=  [n=@ud]
+  ^-  cord
+  (crip ((d-co:co 0) n))
 ::  json (dejs)
 ++  dejs-tracks
   |=  =json
