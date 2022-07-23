@@ -51,11 +51,9 @@
   |=  [=mark =vase]
   ^-  (quip card _this)
   ?+  mark  !!
-      %tracks-add-track
-    =/  new-track  !<(track vase)
-    :_  this(tracks (into tracks 0 new-track))
-        ~[(run-track-card new-track)]
       %tracks-change-tracks
+    ::  TODO start timers if tracks are added
+    ::  TODO remove timers if tracks are removed
     =/  new-tracks  !<((list track) vase)
     `this(tracks new-tracks)
       %noun
