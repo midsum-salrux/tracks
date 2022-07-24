@@ -56,11 +56,34 @@ function cardForTrack(track) {
           <h3 className="text-center mb-1">{dataFromCargo(track.results)}</h3>
         </div>
         <div className="row">
-          <div className="col-lg-auto text-left">
-            <h6 className="card-subtitle text-muted">{pathOfTrack(track)}</h6>
-          </div>
           <div className="col-sm text-right">
-            <h6 className="card-subtitle text-muted"><a href="#" className="badge badge-light" data-toggle="modal" data-target={"#" + pathOfTrack(track)}>edit</a></h6>
+            <div className="row justify-content-between">
+              <div className="col-auto">
+                <h6 className="card-subtitle text-muted text-left">
+                  {pathOfTrack(track)}
+                </h6>
+              </div>
+              <div className="col-auto mr-3">
+                <div className="row">
+                  <h6 className="card-subtitle text-muted">
+                    <a href="#" className="badge badge-light">
+                      {"<"}
+                    </a>
+                  </h6>
+                  <h6 className="card-subtitle text-muted">
+                    <a href="#" className="badge badge-light"
+                       data-toggle="modal" data-target={"#" + pathOfTrack(track)}>
+                      edit
+                    </a>
+                  </h6>
+                  <h6 className="card-subtitle text-muted">
+                    <a href="#" className="badge badge-light">
+                      {">"}
+                    </a>
+                  </h6>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

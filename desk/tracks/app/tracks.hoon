@@ -67,6 +67,7 @@
 ++  on-watch  on-watch:def
 ++  on-leave  on-leave:def
 ++  on-peek
+  ::  TODO add scry to return desks and threads
   |=  [=path]
   ^-  (unit (unit cage))
   ?>  ?=([%x %tracks ~] path)

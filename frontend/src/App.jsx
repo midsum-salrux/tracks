@@ -19,15 +19,6 @@ export default function App() {
     });
   }
 
-  function addTrackPoke(newTrack) {
-    window.urbit.poke({
-      app: "tracks",
-      mark: "tracks-add-track",
-      json: newTrack,
-      onSuccess: tracksScry
-    });
-  }
-
   window.urbit = new Urbit("");
   window.urbit.ship = window.ship;
 
