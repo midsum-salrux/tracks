@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import NavBar from "./NavBar";
 import Tracks from "./Tracks";
 import Urbit from "@urbit/http-api";
 
@@ -18,13 +19,13 @@ export default function App() {
         let newResult = result;
 
         if ("ud" in result) {
-          newResult.ud.time = (result.ud.time / 1000)
+          newResult.ud.time = Math.floor(result.ud.time / 1000)
         } else if ("rd" in result) {
-          newResult.rd.time = (result.rd.time / 1000)
+          newResult.rd.time = Math.floor(result.rd.time / 1000)
         } else if ("bool" in result) {
-          newResult.bool.time = (result.bool.time / 1000)
+          newResult.bool.time = Math.floor(result.bool.time / 1000)
         } else if ("tape" in result) {
-          newResult.tape.time = (result.tape.time / 1000)
+          newResult.tape.time = Math.floor(result.tape.time / 1000)
         }
 
         return newResult;
@@ -51,6 +52,7 @@ export default function App() {
   useEffect(tracksScry, []);
 
   return <>
+    <NavBar tracks={tracks} changeTracksPoke={changeTracksPoke} />
     <Tracks tracks={tracks} changeTracksPoke={changeTracksPoke} />
   </>;
 }
