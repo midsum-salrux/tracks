@@ -1,4 +1,3 @@
-::  TODO comments, make the authors parameters
 /-  spider
 /+  *strandio
 /+  *track

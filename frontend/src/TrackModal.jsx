@@ -1,18 +1,20 @@
 import React, { useState } from "react";
+import Frequency from "./Frequency";
+import Name from "./Name";
 import Params from "./Params";
 import pathOfTrack from "./pathOfTrack";
+import Taft from "./Taft";
 import { CheckIcon, TrashIcon } from "@primer/octicons-react";
-
-const FIVE_MIN = "~m5"
-const HOURLY = "~h1"
-const DAILY = "~d1"
 
 export default function TrackModal(props) {
   const track = props.tracks[props.index];
+
+  const [taft, setTaft] = useState(track.taft);
   const [name, setName] = useState(track.name);
   const [frequency, setFrequency] = useState(track.frequency);
-  const [params, setParams] = useState(track.params)
+  const [params, setParams] = useState(track.params);
 
+  // TODO make save and delete work
   return <div className="modal" id={pathOfTrack(track)} role="dialog">
     <div className="modal-dialog" role="document">
       <div className="modal-content">
@@ -23,24 +25,9 @@ export default function TrackModal(props) {
           </button>
         </div>
         <div className="modal-body">
-          <div className="form-group">
-            <label className="col-form-label">Name</label>
-            <div className="input-group mb-2">
-              <input type="text" className="form-control" placeholder="Track Name"
-                     value={name} onChange={(e) => setName(e.target.value)} />
-            </div>
-          </div>
-          <div className="form-group">
-            <label className="col-form-label">Frequency</label>
-            <select className="form-control" id="frequency"
-                    value={frequency} onChange={(e) =>
-                      { setFrequency(e.target.value); e.preventDefault(); }
-                    }>
-              <option value={FIVE_MIN}>5 minutes</option>
-              <option value={HOURLY}>hourly</option>
-              <option value={DAILY}>daily</option>
-            </select>
-          </div>
+          <Taft taft={taft} setTaft={setTaft} />
+          <Name name={name} setName={setName} />
+          <Frequency frequency={frequency} setFrequency={setFrequency} />
           <Params params={params} setParams={setParams} />
         </div>
         <div className="modal-footer justify-content-between">
