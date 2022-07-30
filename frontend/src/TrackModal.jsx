@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Params from "./Params";
 import pathOfTrack from "./pathOfTrack";
+import { CheckIcon, TrashIcon } from "@primer/octicons-react";
 
 const FIVE_MIN = "~m5"
 const HOURLY = "~h1"
@@ -42,9 +43,9 @@ export default function TrackModal(props) {
           </div>
           <Params params={params} setParams={setParams} />
         </div>
-        <div className="modal-footer">
-          <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" className="btn btn-primary">Save changes</button>
+        <div className="modal-footer justify-content-between">
+          <button type="button" className="btn btn-danger"><TrashIcon /></button>
+          <button type="button" className="btn btn-primary" data-dismiss="modal"><CheckIcon /></button>
         </div>
       </div>
     </div>

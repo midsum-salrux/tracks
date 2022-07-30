@@ -32,18 +32,18 @@ function addParam(params, setParams) {
 }
 
 function paramInput(params, setParams, index) {
-  return <div className="form-row mb-2">
-    <div className="col">
+  return <div className="form-row justify-content-between mb-2">
+    <div className="col-5">
       <input type="text" className="form-control" placeholder="Key"
              value={params[index].key}
              onChange={(e) => updateKey(params, setParams, index, e.target.value)} />
     </div>
-    <div className="col">
+    <div className="col-5">
       <input type="text" className="form-control" placeholder="Value"
              value={params[index].value}
              onChange={(e) => updateValue(params, setParams, index, e.target.value)} />
     </div>
-    <div className="col-sm-auto">
+    <div className="col col-auto">
       <button type="button" className="btn btn-danger"
               onClick={() => removeParam(params, setParams, index)}>
         <TrashIcon />
@@ -55,10 +55,10 @@ function paramInput(params, setParams, index) {
 export default function Params(props) {
   return <div className="form-group">
     <div className="form-row justify-content-between mb-2">
-      <div className="col">
+      <div className="col-5">
         <label className="col-form-label">Params</label>
       </div>
-      <div className="col-sm-auto">
+      <div className="col col-auto">
         <button type="button" className="btn btn-success"
                 onClick={(e) =>
                   { addParam(props.params, props.setParams); e.preventDefault(); }
