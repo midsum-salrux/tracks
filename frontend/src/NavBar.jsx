@@ -1,7 +1,6 @@
 import React from "react";
 import { PlusIcon } from "@primer/octicons-react";
 
-
 export default function NavBar(props) {
   return <>
     <div className="modal" tabIndex="-1" role="dialog" id="about">
@@ -14,6 +13,7 @@ export default function NavBar(props) {
             </button>
           </div>
           <div className="modal-body">
+            <!-- TODO update authorship, make a real group and link it here -->>
             <p>Made by <code>~midsum-salrux</code></p>
             <p>Visit <code>~tomdys/tracks</code> for support</p>
           </div>
@@ -25,6 +25,7 @@ export default function NavBar(props) {
       <h5 className="my-0 mr-md-auto font-weight-normal">Tracks</h5>
       <nav className="my-2 my-md-0 mr-md-3">
         <button className="btn btn-light btn-sm mr-3" href="#">
+          <!-- TODO create "new track" modal -->>
           <PlusIcon />
         </button>
         <button className="btn btn-light btn-sm" href="#"

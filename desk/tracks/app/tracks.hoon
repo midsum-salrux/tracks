@@ -21,6 +21,8 @@
       !>([taft.track params.track])
   ==
 ++  timer-card
+  ::  TODO we need to handle timers in such a way that added and removing a track with
+  ::  the same taft won't create a bunch of timers that make the thread run too often.
   |=  [=taft-timer]
   ^-  card
   [%pass :-(%timer taft.taft-timer) %arvo %b [%wait time.taft-timer]]
@@ -59,6 +61,7 @@
       %noun
     =/  =update-poke  !<(update-poke vase)
       ?-  update-poke
+        ::  utility poke to clear state during development
           [%reinit]
         ::  TODO clear timers
         on-init
